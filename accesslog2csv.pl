@@ -37,11 +37,15 @@ while (<>) {
     $method = $11;
     $url = $12;
     $code = $13;
-    $bytesd = $14;
-    $referer = $16;
-    $ua = $17;
+    if ($14 eq '-') {
+      $bytesd = 0;
+    } else {
+      $bytesd = $14;
+    }
+    $referer = $17;
+    $ua = $18;
 
-    print STDOUT "\"$host\",\"$logname\",\"$year-$month-$day $hour:$min:$sec\",\"GMT$tz\",\"$method\",\"$url\",\"$code\",\"$bytesd\",\"$referer\"\,\"$ua\"\n";
+    print STDOUT "\"$host\",\"$logname\",\"$year-$month-$day $hour:$min:$sec\",\"GMT$tz\",\"$method\",\"$url\",$code,$bytesd,\"$referer\"\,\"$ua\"\n";
   } else {
     print STDERR "Invalid Line at $line_no: $_";
   }
